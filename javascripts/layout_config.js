@@ -35,7 +35,7 @@ function heightAdjust(id) {
     }
     
     var height2 = document.body.clientHeight - 220;
-    var height3 = 810;
+    var height3 = 620;  /*810 for 2 links*/
     document.getElementById(id).style.height = Math.max(height1, height2, height3) + 'px';   /*compare the height of the main column, the right-side column and the whole viewport, and then apply the largest value to the right-side column */
 }
 

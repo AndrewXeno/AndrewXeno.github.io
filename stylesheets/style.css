@@ -432,7 +432,7 @@ form #minisubmit{
     padding: 0 10px;
     box-shadow: 0px 2px 5px rgba(0,0,0,.50); 
     background: #CFD8DC;
-    height: 810px;
+    height: 620px; /*810px For 2 links*/
 }
 
 
