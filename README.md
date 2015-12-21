@@ -1,2 +1,2 @@
 # AndrewXeno.github.io
-AndrewXeno; Notes
+AndrewX; Notes
