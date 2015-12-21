@@ -575,6 +575,18 @@ body {
   line-height: 24px;
   padding: 3px 0;
 }
+#sidebar .sidebar-top h1 {
+  color: rgba(255,255,255,0.8);
+  font-size: 30px;
+  font-weight: 600;
+}
+#sidebar .sidebar-top img {
+  width: 100%;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+}
 #sidebar .sidebar-top .social-links {
   float: right;
   position: relative;
@@ -1820,7 +1832,8 @@ i.icon:before {
   }
   .main-body-inner #sidebar .sidebar-top p,
   .main-body-inner #sidebar .sidebar-top a,
-  .main-body-inner #sidebar .sidebar-top i {
+  .main-body-inner #sidebar .sidebar-top i,
+  .main-body-inner #sidebar .sidebar-top h1 {
     color: #666;
   }
   .main-body-inner #sidebar #article-nav,
