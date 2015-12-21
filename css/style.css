@@ -276,8 +276,8 @@ body {
   box-sizing: border-box;
   -webkit-box-shadow: 0px 1px 4px rgba(0,0,0,0.5);
   box-shadow: 0px 1px 4px rgba(0,0,0,0.5);
-  padding-left: 260px;
-  background: url("images/s-left.png") repeat-y left 0;
+  padding-right: 260px;
+  background: url("images/s-left.png") repeat-y right 0;
 }
 .main-body-inner:before,
 .main-body-inner:after {
@@ -288,7 +288,7 @@ body {
   clear: both;
 }
 #main {
-  float: right;
+  float: left;
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -538,8 +538,8 @@ body {
   display: none;
 }
 #sidebar {
-  float: left;
-  margin-left: -260px;
+  float: right;
+  margin-right: -260px;
   width: 260px;
 }
 #sidebar .sidebar-toggle {
@@ -1768,12 +1768,12 @@ i.icon:before {
     margin-top: -50px;
   }
   .main-body-inner {
-    padding-left: 50px;
-    background-position: -290px 0 !important;
+    padding-right: 50px;
+    background-position: -340px 0 !important;
   }
   .main-body-inner #sidebar {
-    left: 0;
-    background: url("images/s-left.png") repeat-y left 0;
+    right: 0;
+    background: url("images/s-left.png") repeat-y right 0;
     margin: 0;
     height: 100%;
     position: absolute;
@@ -1810,7 +1810,7 @@ i.icon:before {
     font-family: fontawesome;
   }
   .main-body-inner #sidebar .sidebar-toggle .toggle:before {
-    content: '\f101';
+    content: '\f100';
   }
   .main-body-inner #sidebar .sidebar-top {
     padding: 10px 30px;
