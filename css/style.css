@@ -483,7 +483,7 @@ body {
   float: right;
 }
 .search-form {
-  padding: 12px 5px 12px 5px;
+  padding: 13px 5px 13px 5px;
   height: 50px;
   overflow: hidden;
   -webkit-box-sizing: border-box;
@@ -500,7 +500,7 @@ body {
 .search-form-input.st-ui-search-input,
 .search-form-input.st-default-search-input {
   -webkit-appearance: textarea;
-  padding: 2px 10px 2px 10px;
+  padding: 1px 10px 1px 10px;
   width: 100px;
   height: 22px;
   border: none !important;
