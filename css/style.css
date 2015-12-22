@@ -614,7 +614,7 @@ body {
   border-radius: 3px;
   -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
-  text-transform: none;
+  text-transform: uppercase;
   z-index: 1;
 }
 #sidebar .sidebar-top .social-links .social-tooltip:hover:before {
