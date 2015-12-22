@@ -3,19 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>AndrewX; Notes</title>
+  <title>图块通行度加强 Enhanced Tile Passage | AndrewX; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="RPG Maker MV,图块,通行度">
+  
 
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AndrewX; Notes">
-<meta property="og:url" content="http://andrewxeno.github.io/index.html">
+  <meta name="description" content="插件简介一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图块通行度加强 Enhanced Tile Passage">
+<meta property="og:url" content="http://andrewxeno.github.io/2015/12/22/Enhanced-Tile-Passage/index.html">
 <meta property="og:site_name" content="AndrewX; Notes">
-<meta property="og:description">
+<meta property="og:description" content="插件简介一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行。">
+<meta property="og:image" content="http://andrewxeno.github.io/2015/12/22/Enhanced-Tile-Passage/ETP01.png">
+<meta property="og:image" content="http://andrewxeno.github.io/2015/12/22/Enhanced-Tile-Passage/ETP02.png">
+<meta property="og:image" content="http://andrewxeno.github.io/2015/12/22/Enhanced-Tile-Passage/ETP03.png">
+<meta property="og:updated_time" content="2015-12-22T06:33:35.533Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AndrewX; Notes">
-<meta name="twitter:description">
+<meta name="twitter:title" content="图块通行度加强 Enhanced Tile Passage">
+<meta name="twitter:description" content="插件简介一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -121,78 +127,122 @@
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><em class="page-title-link" data-url="home">主页</em></h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/RM-Plugin/">RM Plugin</a></h1>
             </div>
             <div class="main-body-content">
               
+  <article id="post-Enhanced-Tile-Passage" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
   
+    <h1 class="article-title" itemprop="name">
+      图块通行度加强 Enhanced Tile Passage
+    </h1>
   
-    
-    
+
+        </header>
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
-        <p class="date"><time datetime="2015-12-22T05:49:52.000Z" itemprop="datePublished">2015-12-22</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/22/Enhanced-Tile-Passage/" class="title">图块通行度加强 Enhanced Tile Passage</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        插件简介一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行。
+      <p class="article-byline">
+        <a href="/2015/12/22/Enhanced-Tile-Passage/" class="article-date">
+  <time datetime="2015-12-22T05:49:52.000Z" itemprop="datePublished">2015-12-22</time>
+</a>
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h4 id="u63D2_u4EF6_u7B80_u4ECB"><a href="#u63D2_u4EF6_u7B80_u4ECB" class="headerlink" title="插件简介"></a>插件简介</h4><p>一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行。<br><a id="more"></a></p>
+<p>比如下图的地图：<br><img src="/2015/12/22/Enhanced-Tile-Passage/ETP01.png" alt="原始地图" title="原始地图"><br>实际不可通行的只有黄色区域（只是展示用，使用时不需要画区域）<br><img src="/2015/12/22/Enhanced-Tile-Passage/ETP02.png" alt="实际不可通行区域为黄色部分" title="实际不可通行区域为黄色部分"><br>此外本脚本还提供通过区域ID强制改变图块通行度和优先度的功能：</p>
+<ul>
+<li>强制可通行并处于主角上方（星形通行）</li>
+<li>强制处于主角上方（不更改通行）</li>
+<li>强制可通行（不更改优先级）</li>
+<li>强制不可通行（不更改优先级）</li>
+</ul>
+<h4 id="u98DF_u7528_u65B9_u6CD5_uFF1A"><a href="#u98DF_u7528_u65B9_u6CD5_uFF1A" class="headerlink" title="食用方法："></a>食用方法：</h4><ol>
+<li>直接安装插件；</li>
+<li>设置参数：<ul>
+<li>Wall Top Terrain Tag：设定为这个地形标记的图块将当作墙壁顶面，用来计算墙壁厚度。默认值7，不启用请设为大于7的数</li>
+<li>Wall Front Terrain Tag：设定为这个地形标记的图块将当作墙壁正面，用来计算墙壁高度。默认值6，不启用请设为大于7的数</li>
+<li>Default Wall Height：当墙壁正面不存在时（如地图底部），默认的墙壁高度。默认值2，不启用请设为0</li>
+<li>Star Terrain Tag：设定为这个地形标记的图块将强制显示在角色之上，并可通行。默认值99，不启用请设为大于7的数</li>
+<li>Star Region ID List：设定为这个区域ID的图块将强制显示在角色之上，并可通行。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+<li>Higher Tile Region ID List: 设定为这个区域ID的图块将强制显示在角色之上，通行度不会改变。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+<li>Passable Tile Region ID List: 设定为这个区域ID的图块将强制可以通行，优先级不会改变。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+<li>Impassable Tile Region ID List: 设定为这个区域ID的图块将强制不可通行，优先级不会改变。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+</ul>
+</li>
+<li>进入数据库，给需要做为墙壁的图块设定相应的地形标记，比如自动墙壁图块的上部为7，下部为6，墙壁元件的通行将根据绘制情况自动计算 <img src="/2015/12/22/Enhanced-Tile-Passage/ETP03.png" alt="地形标记设置" title="地形标记设置"></li>
+<li>如需使用区域ID功能，则根据需求用对应区域ID填在所需图块上。</li>
+</ol>
+<h4 id="u6CE8_u610F_u4E8B_u9879_uFF1A"><a href="#u6CE8_u610F_u4E8B_u9879_uFF1A" class="headerlink" title="注意事项："></a>注意事项：</h4><p>以上tag和区域id元件不支持四方通行设置</p>
+<p>如果需要在高层图块（遮挡角色的部分）上显示事件，事件的优先级需要在角色之上。</p>
+<p>建议新建/复制图块组使用本插件，旧有图块设置请做好备份。由于RM自身图层设计很不灵活，复杂的遮挡效果难以正确实现，建议墙壁通行的功能只用在以墙壁为主的迷宫场景。</p>
+<p>使用条款：非商业·商业皆可，请credit AndrewX</p>
+<h4 id="u66F4_u65B0_u5C65_u5386_uFF1A"><a href="#u66F4_u65B0_u5C65_u5386_uFF1A" class="headerlink" title="更新履历："></a>更新履历：</h4><p>Version 0.81:</p>
+<ul>
+<li>修改：插件名称更改为 Enhanced Tile Passage</li>
+<li>新增：可通行图块行区域ID功能（强制图块可通行）</li>
+<li>修改：插件参数描述提升</li>
+</ul>
+<p>Version 0.80:</p>
+<ul>
+<li>新增：高层图块区域ID功能（强制图块处于角色之上）</li>
+<li>新增：不可通行图块区域ID功能（强制图块不可通行）</li>
+<li>移除：取消Default Wall Thickness参数，因为实用性很低</li>
+<li>移除：为了减少对于地图的副作用，降低不可预期图块通行错误的可能，插件中涉及地形标记的功能将只对A类图块组起效。B~E图块组的相关效果可以通过手动使用区域ID功能实现</li>
+</ul>
+<p>Version 0.71:</p>
+<ul>
+<li>修改：优化通行度判定逻辑</li>
+<li>修改：优化高层图块判定逻辑</li>
+</ul>
+<p>Version 0.70:</p>
+<ul>
+<li>新增：支持多个区域ID</li>
+<li>修改：修正小bug</li>
+</ul>
+<p>Version 0.60:</p>
+<ul>
+<li>修改：优化通行度判定逻辑</li>
+</ul>
+<p>Version 0.51:</p>
+<ul>
+<li>修改：优化高层和通行度判定逻辑</li>
+<li>默认不启用default wall thickness属性</li>
+</ul>
+<p>Version 0.50:</p>
+<ul>
+<li>新增：可以设定区域ID来实现星形通行</li>
+<li>新增： 墙壁的高层低层遮挡现已可以自动计算，不需要使用额外的遮挡修正插件</li>
+<li>新增： B~E组元件可以正确显示在上层，无需额外修改星形通行</li>
+<li>修改：调整参数显示顺序</li>
+</ul>
+<p>Version 0.01:</p>
+<ul>
+<li>完成插件原型</li>
+</ul>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://andrewxeno.github.io/2015/12/22/Enhanced-Tile-Passage/" data-id="ciigz2jwb0000ikvii4k7j3oh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+          <a href="http://andrewxeno.github.io/2015/12/22/Enhanced-Tile-Passage/#comments" class="article-comment-link"><i class="fa fa-comments"></i>评论</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RPG-Maker-MV/">RPG Maker MV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图块/">图块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通行度/">通行度</a></li></ul>
+
+      </footer>
     </div>
   </article>
-
-    
   
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/杂/">杂</a></p>
-        <p class="date"><time datetime="2015-12-22T02:12:14.471Z" itemprop="datePublished">2015-12-22</time></p>
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
       </div>
-      <h2 class="article-title">
-        <a href="/2015/12/22/hello-world/" class="title">Hello World</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        终于搭成了自己的博客，以后在这里看心情记点东西好了，撒花wwwwww。
-
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
+    </section>
   
   
-    </div></section>
-  
-  
-
 
             </div>
           </section>
@@ -214,6 +264,19 @@
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/12/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">Hello World</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     
@@ -324,11 +387,13 @@
   var disqus_shortname = 'andrewxeno';
   
   
+  var disqus_url = 'http://andrewxeno.github.io/2015/12/22/Enhanced-Tile-Passage/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
