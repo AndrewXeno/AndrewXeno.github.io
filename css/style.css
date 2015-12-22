@@ -339,7 +339,6 @@ body {
 }
 #header-title {
   text-align: center;
-  padding: 10px 10px;
 }
 #header-title:before,
 #header-title:after {
@@ -349,20 +348,18 @@ body {
 #header-title:after {
   clear: both;
 }
-#header-title .logo-wrap,
-#header-title .subtitle-wrap {
-  float: left;
+#header-title .logo-wrap {
+  padding: 30px 0px 0px 0px;
 }
 #header-title .subtitle-wrap {
-  padding: 10px 0px 0px;
-  margin-left: 20px;
+  display: block;
 }
 #header-title .subtitle {
-  font-size: 16px;
-  font-style: italic;
-  line-height: 70px;
-  color: rgba(255,255,255,0.7);
-  text-shadow: 0 1px rgba(0,0,0,0.2);
+  font-size: 30px;
+  line-height: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 0 2px rgba(0,0,0,0.5);
 }
 .nav-container .nav-icon,
 .nav-container .nav-container-inner #main-nav .main-nav-list-item .main-nav-list-link {
@@ -1763,6 +1760,20 @@ i.icon:before {
     display: block !important;
   }
 }
+@media only screen and (max-width: 640px) {
+  #header .logo-wrap {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  #header .logo-wrap .logo {
+    margin: 0 auto;
+  }
+  #header .logo-wrap img {
+    margin: 0 auto;
+    width: 100%;
+  }
+}
 @media only screen and (min-width: 480px) and (max-width: 959px) {
   #header {
     padding-bottom: 50px;
@@ -1894,6 +1905,9 @@ i.icon:before {
     display: block;
     width: 100%;
     margin-left: 0px;
+  }
+  #header .subtitle {
+    font-size: 25px;
   }
   #header .nav-container {
     padding: 0px;
