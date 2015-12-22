@@ -12,7 +12,7 @@
   <meta name="description" content="插件简介：RMMV默认的动画全部属于屏幕的child sprite，即动画会在高层统一播放，使得动画缺乏层次感。这个插件会将每组动画归为其目标的child sprite。全屏动画不受影响。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分层动画 Layered Animation">
-<meta property="og:url" content="http://andrewxeno.github.io/2015/12/22/Layered-Animation/index.html">
+<meta property="og:url" content="http://andrewxeno.github.io/posts/2015/12/22/Layered_Animation/index.html">
 <meta property="og:site_name" content="AndrewX; Notes">
 <meta property="og:description" content="插件简介：RMMV默认的动画全部属于屏幕的child sprite，即动画会在高层统一播放，使得动画缺乏层次感。这个插件会将每组动画归为其目标的child sprite。全屏动画不受影响。">
 <meta property="og:updated_time" content="2015-12-22T07:31:25.187Z">
@@ -144,7 +144,7 @@
             </div>
             <div class="main-body-content">
               
-  <article id="post-Layered-Animation" class="article article-single article-type-post" itemscope itemprop="blogPost">
+  <article id="post-Layered_Animation" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
       <!--  -->
       
@@ -159,7 +159,7 @@
         </header>
       
       <p class="article-byline">
-        <a href="/2015/12/22/Layered-Animation/" class="article-date">
+        <a href="/posts/2015/12/22/Layered_Animation/" class="article-date">
   <time datetime="2015-12-22T07:24:44.000Z" itemprop="datePublished">2015-12-22</time>
 </a>
       </p>
@@ -173,9 +173,9 @@
 <h4 id="u63D2_u4EF6_u5185_u5BB9_uFF1A"><a href="#u63D2_u4EF6_u5185_u5BB9_uFF1A" class="headerlink" title="插件内容："></a>插件内容：</h4><figure class="highlight javascript"><figcaption><span>插件内容</span><a href="https://github.com/AndrewXeno/AndrewX-RPGMakerMV-Plugins/raw/master/plugins/AndrewX_LayeredAnimation.js" target="_blank" rel="external">AndrewX_LayeredAnimation.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="comment">// AndrewX - Layered Animation</span></span><br><span class="line"><span class="comment">// AndrewX_LayeredAnimation.js</span></span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="keyword">var</span> AndrewX = AndrewX || &#123;&#125;;</span><br><span class="line">AndrewX.LA = AndrewX.LA || &#123;&#125;;</span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="comment">/*:</span><br><span class="line"> * @plugindesc v0.10 Enable animations to be displayed on the same layers as its target. (except for Screen Animations)</span><br><span class="line"> * @author AndrewX</span><br><span class="line"> * </span><br><span class="line"> * @help</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Introduction and Instructions</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * No need for any configuration.</span><br><span class="line"> *</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Changelog</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * Version 0.10:</span><br><span class="line"> * - Finished prototype</span><br><span class="line"> *</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Term of Use</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * Free for use in non-commercial or commercial RMMV projects</span><br><span class="line"> * Please credit AndrewX</span><br><span class="line"> * </span><br><span class="line"> */</span></span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">AndrewX.LA.startAnimation = Sprite_Base.prototype.startAnimation;</span><br><span class="line">Sprite_Base.prototype.startAnimation = <span class="function"><span class="keyword">function</span>(<span class="params">animation, mirror, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sprite = <span class="keyword">new</span> Sprite_Animation();</span><br><span class="line">    sprite.setup(<span class="keyword">this</span>._effectTarget, animation, mirror, delay);</span><br><span class="line">    <span class="comment">//this.parent.addChild(sprite);  Changed to:</span></span><br><span class="line">    <span class="keyword">if</span>(animation.position === <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.parent.addChild(sprite);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.addChild(sprite);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//modification done</span></span><br><span class="line">    <span class="keyword">this</span>._animationSprites.push(sprite);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">AndrewX.LA.updatePosition = Sprite_Animation.prototype.updatePosition</span><br><span class="line">Sprite_Animation.prototype.updatePosition = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._animation.position === <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.x = <span class="keyword">this</span>.parent.width / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">this</span>.y = <span class="keyword">this</span>.parent.height / <span class="number">2</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> parent = <span class="keyword">this</span>._target.parent;</span><br><span class="line">        <span class="keyword">var</span> grandparent = parent ? parent.parent : <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.x = <span class="number">0</span>; <span class="comment">//original: this.x = this._target.x</span></span><br><span class="line">        <span class="keyword">this</span>.y = <span class="number">0</span>; <span class="comment">//original: this.y = this._target.y</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.parent === grandparent) &#123;</span><br><span class="line">            <span class="keyword">this</span>.x += parent.x;</span><br><span class="line">            <span class="keyword">this</span>.y += parent.y;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>._animation.position === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.y -= <span class="keyword">this</span>._target.height;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._animation.position === <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.y -= <span class="keyword">this</span>._target.height / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       </div>
       <footer class="article-footer">
-        <a data-url="http://andrewxeno.github.io/2015/12/22/Layered-Animation/" data-id="ciih2rzco000e8sviafcrrt86" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        <a data-url="http://andrewxeno.github.io/posts/2015/12/22/Layered_Animation/" data-id="ciihcvrtr000gb0viqih4m4s1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
         
-          <a href="http://andrewxeno.github.io/2015/12/22/Layered-Animation/#comments" class="article-comment-link"><i class="fa fa-comments"></i>评论</a>
+          <a href="http://andrewxeno.github.io/posts/2015/12/22/Layered_Animation/#comments" class="article-comment-link"><i class="fa fa-comments"></i>评论</a>
         
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RPG-Maker-MV/">RPG Maker MV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动画/">动画</a></li></ul>
@@ -217,7 +217,7 @@
 <nav id="article-nav">
   
   
-    <a href="/2015/12/22/OverpassTile-Fix/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/posts/2015/12/22/OverpassTile_Fix/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <p class="article-nav-title">OverpassTile修正 OverpassTile Fix</p>
       <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
@@ -238,7 +238,7 @@
             
             <div class="item-inner">
               <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
-              <p class="item-title"><a href="/2015/12/22/Layered-Animation/" class="title">分层动画 Layered Animation</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/Layered_Animation/" class="title">分层动画 Layered Animation</a></p>
               <p class="item-date"><time datetime="2015-12-22T07:24:44.000Z" itemprop="datePublished">2015-12-22</time></p>
             </div>
           </li>
@@ -247,7 +247,7 @@
             
             <div class="item-inner">
               <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
-              <p class="item-title"><a href="/2015/12/22/OverpassTile-Fix/" class="title">OverpassTile修正 OverpassTile Fix</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/OverpassTile_Fix/" class="title">OverpassTile修正 OverpassTile Fix</a></p>
               <p class="item-date"><time datetime="2015-12-22T07:19:08.000Z" itemprop="datePublished">2015-12-22</time></p>
             </div>
           </li>
@@ -256,7 +256,7 @@
             
             <div class="item-inner">
               <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
-              <p class="item-title"><a href="/2015/12/22/Enhanced-Tile-Passage/" class="title">图块通行度加强 Enhanced Tile Passage</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/Enhanced_Tile_Passage/" class="title">图块通行度加强 Enhanced Tile Passage</a></p>
               <p class="item-date"><time datetime="2015-12-22T05:49:52.000Z" itemprop="datePublished">2015-12-22</time></p>
             </div>
           </li>
@@ -265,8 +265,8 @@
             
             <div class="item-inner">
               <p class="item-category"><a class="article-category-link" href="/categories/杂/">杂</a></p>
-              <p class="item-title"><a href="/2015/12/22/hello-world/" class="title">Hello World</a></p>
-              <p class="item-date"><time datetime="2015-12-22T02:12:14.471Z" itemprop="datePublished">2015-12-22</time></p>
+              <p class="item-title"><a href="/posts/2015/12/21/Hello_World/" class="title">Hello World</a></p>
+              <p class="item-date"><time datetime="2015-12-21T12:49:52.000Z" itemprop="datePublished">2015-12-21</time></p>
             </div>
           </li>
         
@@ -353,7 +353,7 @@
   var disqus_shortname = 'andrewxeno';
   
   
-  var disqus_url = 'http://andrewxeno.github.io/2015/12/22/Layered-Animation/';
+  var disqus_url = 'http://andrewxeno.github.io/posts/2015/12/22/Layered_Animation/';
   
   (function(){
     var dsq = document.createElement('script');
