@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://andrewxeno.github.io/posts/2015/12/22/Enhanced_Tile_Passage/ETP01.png">
 <meta property="og:image" content="http://andrewxeno.github.io/posts/2015/12/22/Enhanced_Tile_Passage/ETP02.png">
 <meta property="og:image" content="http://andrewxeno.github.io/posts/2015/12/22/Enhanced_Tile_Passage/ETP03.png">
-<meta property="og:updated_time" content="2015-12-22T06:55:48.569Z">
+<meta property="og:updated_time" content="2015-12-22T14:16:03.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图块通行度加强 Enhanced Tile Passage">
 <meta name="twitter:description" content="插件简介：一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行，并自动计算通行度和遮挡。同时也提供了根据区域ID调节图块通行和遮挡的功能。">
@@ -191,7 +191,8 @@
 <li>进入数据库，给需要做为墙壁的图块设定相应的地形标记，比如自动墙壁图块的上部为7，下部为6，墙壁元件的通行将根据绘制情况自动计算 <img src="/posts/2015/12/22/Enhanced_Tile_Passage/ETP03.png" alt="地形标记设置" title="地形标记设置"></li>
 <li>如需使用区域ID功能，则根据需求用对应区域ID填在所需图块上。</li>
 </ol>
-<h4 id="u6CE8_u610F_u4E8B_u9879_uFF1A"><a href="#u6CE8_u610F_u4E8B_u9879_uFF1A" class="headerlink" title="注意事项："></a>注意事项：</h4><p>以上tag和区域id元件不支持四方通行设置</p>
+<h4 id="u6CE8_u610F_u4E8B_u9879_uFF1A"><a href="#u6CE8_u610F_u4E8B_u9879_uFF1A" class="headerlink" title="注意事项："></a>注意事项：</h4><p>以上tag和区域id元件不支持四方通行设置。</p>
+<p>为了减少对于地图的副作用，降低不可预期图块通行错误的可能，0.80版本后涉及地形标记的功能将只对A类图块组起效。B~E图块组的相关效果可以通过手动使用区域ID功能实现。</p>
 <p>如果需要在高层图块（遮挡角色的部分）上显示事件，事件的优先级需要在角色之上。</p>
 <p>建议新建/复制图块组使用本插件，旧有图块设置请做好备份。由于RM自身图层设计很不灵活，复杂的遮挡效果难以正确实现，建议墙壁通行的功能只用在以墙壁为主的迷宫场景。</p>
 <h4 id="u4F7F_u7528_u6761_u6B3E_uFF1A"><a href="#u4F7F_u7528_u6761_u6B3E_uFF1A" class="headerlink" title="使用条款："></a>使用条款：</h4><p>非商业·商业皆可，请credit AndrewX</p>
