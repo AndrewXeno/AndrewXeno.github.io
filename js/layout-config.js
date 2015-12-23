@@ -4,7 +4,7 @@ function changePos(id) { /*set position according to element height */
 		scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
 		scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft,
 		yOffset = document.getElementById('header-title').offsetHeight;
-	if (scrollTop < yOffset) {
+	if (scrollTop <= yOffset) {
 		obj.style.position = 'relative';
 		obj.style.left = 0;
 		obj.style.top = 0;
