@@ -1892,7 +1892,7 @@ i.icon:before {
   }
   #main .main-body-header,
   #main .archive-year-wrap {
-    padding: 12px 30px;
+    padding: 13px 30px 12px;
   }
 }
 @media only screen and (max-width: 479px) {
