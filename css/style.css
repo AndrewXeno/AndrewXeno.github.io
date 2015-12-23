@@ -327,6 +327,7 @@ body {
 }
 #header {
   background: #0277bd;
+  min-width: 320px;
   padding-bottom: 60px;
   position: relative;
 }
@@ -366,7 +367,7 @@ body {
   float: left;
   color: rgba(255,255,255,0.7);
   text-decoration: none;
-  text-shadow: 0 1px rgba(0,0,0,0.2);
+  text-shadow: 0 1px rgba(0,0,0,0.5);
   display: block;
   padding: 20px 15px;
   -webkit-transition: 0.2s ease-in;
@@ -387,6 +388,7 @@ body {
   z-index: 9;
   -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
   box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+  min-width: 320px;
 }
 .nav-container:before,
 .nav-container:after {
@@ -415,7 +417,7 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .nav-container #main-nav-toggle:before {
-  content: "\f0c9";
+  content: "MENU　\f0c9";
 }
 .nav-container .nav-container-inner:before,
 .nav-container .nav-container-inner:after {
@@ -1987,7 +1989,7 @@ i.icon:before {
   }
   #header .nav-container #sub-nav .search-form-input {
     font-size: 14px;
-    width: 88%;
+    width: 85%;
   }
   .main-body-inner {
     padding: 0px;
