@@ -1501,6 +1501,7 @@ a.article-title:hover {
 }
 #footer {
   background: #0277bd;
+  min-width: 320px;
   margin-top: 60px;
   color: #aaa;
   line-height: 1.6em;
