@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>图块通行度加强 Enhanced Tile Passage | AndrewX; Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="RPG Maker MV,图块,通行度">
+  
+
+  <meta name="description" content="插件简介：一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行，并自动计算通行度和遮挡。同时也提供了根据区域ID调节图块通行和遮挡的功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图块通行度加强 Enhanced Tile Passage">
+<meta property="og:url" content="http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/index.html">
+<meta property="og:site_name" content="AndrewX; Notes">
+<meta property="og:description" content="插件简介：一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行，并自动计算通行度和遮挡。同时也提供了根据区域ID调节图块通行和遮挡的功能。">
+<meta property="og:image" content="http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/ETP01.png">
+<meta property="og:image" content="http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/ETP02.png">
+<meta property="og:image" content="http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/ETP03.png">
+<meta property="og:updated_time" content="2015-12-23T16:07:33.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图块通行度加强 Enhanced Tile Passage">
+<meta name="twitter:description" content="插件简介：一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行，并自动计算通行度和遮挡。同时也提供了根据区域ID调节图块通行和遮挡的功能。">
+  
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#0277bd">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#0277bd">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+    
+      <style type="text/css">
+          .logo { background-image:url(http://andrewxeno.github.io/css/images/logo-header.png);
+          
+            width: 600px;
+          
+          
+            height: 90px;
+          
+          
+            -webkit-background-size: 600px 90px;
+            -moz-background-size: 600px 90px;
+            background-size: 600px 90px;
+          
+          }
+
+        
+          #footer .logo {
+          
+            width: 600px;
+          
+          
+            height: 90px;
+          
+          
+            -webkit-background-size: 600px 90px;
+            -moz-background-size: 600px 90px;
+            background-size: 600px 90px;
+          
+          }
+        
+      </style>
+    
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/">
+              <img src="http://andrewxeno.github.io/css/images/logo-header.png" alt="site logo">
+            </a>
+          </h1>
+          
+        </div>
+        <div id="header-placeholder">
+          <div id="header-inner" class="nav-container">
+            <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+            <div class="nav-container-inner">
+              <ul id="main-nav">
+                
+                  <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">主页</a></li>
+                
+                      <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/RM-Plugin/">RM Plugin</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/杂/">杂</a></li></ul>
+                    
+                  <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/About/index.html">关于</a></li>
+                
+              </ul>
+              <nav id="sub-nav">
+                <div id="search-form-wrap">
+                  
+                    <div class="search-form">
+                      <input type="text" class="st-default-search-input search-form-input" placeholder="搜索">
+                    </div>
+                  
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/RM-Plugin/">RM Plugin</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-Enhanced-Tile-Passage" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      图块通行度加强 Enhanced Tile Passage
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/posts/2015/12/22/Enhanced-Tile-Passage/" class="article-date">
+  <time datetime="2015-12-22T05:49:52.000Z" itemprop="datePublished">2015-12-22</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h4 id="u63D2_u4EF6_u7B80_u4ECB_uFF1A"><a href="#u63D2_u4EF6_u7B80_u4ECB_uFF1A" class="headerlink" title="插件简介："></a>插件简介：</h4><p>一直很不满RPG Maker VX以后的自动单层地图的绘制系统，感觉很难画出美观复杂的地图了。这个脚本允许角色从墙壁后通行，并自动计算通行度和遮挡。同时也提供了根据区域ID调节图块通行和遮挡的功能。<br><a id="more"></a></p>
+<p>比如下图的地图：<br><img src="/posts/2015/12/22/Enhanced-Tile-Passage/ETP01.png" alt="原始地图" title="原始地图"><br>实际不可通行的只有黄色区域（只是展示用，使用时不需要画区域）<br><img src="/posts/2015/12/22/Enhanced-Tile-Passage/ETP02.png" alt="实际不可通行区域为黄色部分" title="实际不可通行区域为黄色部分"><br>此外本脚本还提供通过区域ID强制改变图块通行度和优先度的功能：</p>
+<ul>
+<li>强制可通行并处于主角上方（星形通行）</li>
+<li>强制处于主角上方（不更改通行）</li>
+<li>强制可通行（不更改优先级）</li>
+<li>强制不可通行（不更改优先级）</li>
+</ul>
+<h4 id="u98DF_u7528_u65B9_u6CD5_uFF1A"><a href="#u98DF_u7528_u65B9_u6CD5_uFF1A" class="headerlink" title="食用方法："></a>食用方法：</h4><ol>
+<li>直接安装插件；</li>
+<li>设置参数：<ul>
+<li>Wall Top Terrain Tag：设定为这个地形标记的图块将当作墙壁顶面，用来计算墙壁厚度。默认值7，不启用请设为大于7的数</li>
+<li>Wall Front Terrain Tag：设定为这个地形标记的图块将当作墙壁正面，用来计算墙壁高度。默认值6，不启用请设为大于7的数</li>
+<li>Default Wall Height：当墙壁正面不存在时（如地图底部），默认的墙壁高度。默认值2，不启用请设为0</li>
+<li>Star Terrain Tag：设定为这个地形标记的图块将强制显示在角色之上，并可通行。默认值99，不启用请设为大于7的数</li>
+<li>Star Region ID List：设定为这个区域ID的图块将强制显示在角色之上，并可通行。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+<li>Higher Tile Region ID List: 设定为这个区域ID的图块将强制显示在角色之上，通行度不会改变。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+<li>Passable Tile Region ID List: 设定为这个区域ID的图块将强制可以通行，优先级不会改变。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+<li>Impassable Tile Region ID List: 设定为这个区域ID的图块将强制不可通行，优先级不会改变。多个区域用半角逗号隔开。默认值0，不启用请设为0</li>
+</ul>
+</li>
+<li>进入数据库，给需要做为墙壁的图块设定相应的地形标记，比如自动墙壁图块的上部为7，下部为6，墙壁元件的通行将根据绘制情况自动计算 <img src="/posts/2015/12/22/Enhanced-Tile-Passage/ETP03.png" alt="地形标记设置" title="地形标记设置"></li>
+<li>如需使用区域ID功能，则根据需求用对应区域ID填在所需图块上。</li>
+</ol>
+<h4 id="u6CE8_u610F_u4E8B_u9879_uFF1A"><a href="#u6CE8_u610F_u4E8B_u9879_uFF1A" class="headerlink" title="注意事项："></a>注意事项：</h4><p>以上tag和区域id元件不支持四方通行设置。</p>
+<p>为了减少对于地图的副作用，降低不可预期图块通行错误的可能，0.80版本后涉及地形标记的功能将只对A类图块组起效。B~E图块组的相关效果可以通过手动使用区域ID功能实现。</p>
+<p>如果需要在高层图块（遮挡角色的部分）上显示事件，事件的优先级需要在角色之上。</p>
+<p>建议新建/复制图块组使用本插件，旧有图块设置请做好备份。由于RM自身图层设计很不灵活，复杂的遮挡效果难以正确实现，建议墙壁通行的功能只用在以墙壁为主的迷宫场景。</p>
+<h4 id="u4F7F_u7528_u6761_u6B3E_uFF1A"><a href="#u4F7F_u7528_u6761_u6B3E_uFF1A" class="headerlink" title="使用条款："></a>使用条款：</h4><p>非商业·商业皆可，请credit AndrewX</p>
+<h4 id="u66F4_u65B0_u5C65_u5386_uFF1A"><a href="#u66F4_u65B0_u5C65_u5386_uFF1A" class="headerlink" title="更新履历："></a>更新履历：</h4><h5 id="Version_0-82_3A"><a href="#Version_0-82_3A" class="headerlink" title="Version 0.82:"></a>Version 0.82:</h5><ul>
+<li>修改：增加未指定时的默认参数值</li>
+</ul>
+<h5 id="Version_0-81_3A"><a href="#Version_0-81_3A" class="headerlink" title="Version 0.81:"></a>Version 0.81:</h5><ul>
+<li>修改：插件名称更改为 Enhanced Tile Passage</li>
+<li>新增：可通行图块行区域ID功能（强制图块可通行）</li>
+<li>修改：插件参数描述提升</li>
+</ul>
+<h5 id="Version_0-80_3A"><a href="#Version_0-80_3A" class="headerlink" title="Version 0.80:"></a>Version 0.80:</h5><ul>
+<li>新增：高层图块区域ID功能（强制图块处于角色之上）</li>
+<li>新增：不可通行图块区域ID功能（强制图块不可通行）</li>
+<li>移除：取消Default Wall Thickness参数，因为实用性很低</li>
+<li>移除：为了减少对于地图的副作用，降低不可预期图块通行错误的可能，插件中涉及地形标记的功能将只对A类图块组起效。B~E图块组的相关效果可以通过手动使用区域ID功能实现</li>
+</ul>
+<h5 id="Version_0-71_3A"><a href="#Version_0-71_3A" class="headerlink" title="Version 0.71:"></a>Version 0.71:</h5><ul>
+<li>修改：优化通行度判定逻辑</li>
+<li>修改：优化高层图块判定逻辑</li>
+</ul>
+<h5 id="Version_0-70_3A"><a href="#Version_0-70_3A" class="headerlink" title="Version 0.70:"></a>Version 0.70:</h5><ul>
+<li>新增：支持多个区域ID</li>
+<li>修改：修正小bug</li>
+</ul>
+<h5 id="Version_0-60_3A"><a href="#Version_0-60_3A" class="headerlink" title="Version 0.60:"></a>Version 0.60:</h5><ul>
+<li>修改：优化通行度判定逻辑</li>
+</ul>
+<h5 id="Version_0-51_3A"><a href="#Version_0-51_3A" class="headerlink" title="Version 0.51:"></a>Version 0.51:</h5><ul>
+<li>修改：优化高层和通行度判定逻辑</li>
+<li>默认不启用default wall thickness属性</li>
+</ul>
+<h5 id="Version_0-50_3A"><a href="#Version_0-50_3A" class="headerlink" title="Version 0.50:"></a>Version 0.50:</h5><ul>
+<li>新增：可以设定区域ID来实现星形通行</li>
+<li>新增： 墙壁的高层低层遮挡现已可以自动计算，不需要使用额外的遮挡修正插件</li>
+<li>新增： B~E组元件可以正确显示在上层，无需额外修改星形通行</li>
+<li>修改：调整参数显示顺序</li>
+</ul>
+<h5 id="Version_0-01_3A"><a href="#Version_0-01_3A" class="headerlink" title="Version 0.01:"></a>Version 0.01:</h5><ul>
+<li>完成插件原型</li>
+</ul>
+<h4 id="u63D2_u4EF6_u5185_u5BB9_uFF1A"><a href="#u63D2_u4EF6_u5185_u5BB9_uFF1A" class="headerlink" title="插件内容："></a>插件内容：</h4><figure class="highlight javascript"><figcaption><span>插件内容</span><a href="https://github.com/AndrewXeno/AndrewX-RPGMakerMV-Plugins/raw/master/plugins/AndrewX_EnhancedTilePassage.js" target="_blank" rel="external">AndrewX_EnhancedTilePassage.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="comment">// AndrewX - Enhanced Tile Passage</span></span><br><span class="line"><span class="comment">// AndrewX_EnhancedTilePassage.js</span></span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="keyword">var</span> AndrewX = AndrewX || &#123;&#125;;</span><br><span class="line">AndrewX.ETP = AndrewX.ETP || &#123;&#125;;</span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="comment">/*:</span><br><span class="line"> * @plugindesc v0.82 Enable characters to walk behind walls. </span><br><span class="line"> * Also enable you to modify tile passage and priority.</span><br><span class="line"> * @author AndrewX</span><br><span class="line"> *</span><br><span class="line"> * @param Wall Top Terrain Tag</span><br><span class="line"> * @desc Tiles with this Terrain Tag will be calculated as wall top side. (Default: 7, Disable: a number greater than 7)</span><br><span class="line"> * Use a number greater than 7 (e.g. 99) if you do not wish to make use of this property.</span><br><span class="line"> * @default 7</span><br><span class="line"> *</span><br><span class="line"> * @param Wall Front Terrain Tag</span><br><span class="line"> * @desc Tiles with this Terrain Tag will be calculated as wall front side. (Default: 6, Disable: a number greater than 7)</span><br><span class="line"> * Use a number greater than 7 (e.g. 99) if you do not wish to make use of this property.</span><br><span class="line"> * @default 6</span><br><span class="line"> * </span><br><span class="line"> * @param Default Wall Height</span><br><span class="line"> * @desc If wall front side cannot be sampled, this will be the default wall height. (Default: 2, Disable: 0)</span><br><span class="line"> * Use 0 if you do not wish to make use of this property.</span><br><span class="line"> * @default 2</span><br><span class="line"> *</span><br><span class="line"> * @param Star Terrain Tag</span><br><span class="line"> * @desc Tiles with this Terrain Tag will be set to star passage (above characters). (Default: 99, Disable: greater than 7)</span><br><span class="line"> * Use a number greater than 7 (e.g. 99) if you do not wish to make use of this property.</span><br><span class="line"> * @default 99</span><br><span class="line"> *</span><br><span class="line"> * @param Star Region ID List</span><br><span class="line"> * @desc Tiles with listed Region ID will be set to star passage. Separate multiple ID with commas. (Disable: 0)</span><br><span class="line"> * Use 0 if you do not wish to make use of this property.</span><br><span class="line"> * @default 0</span><br><span class="line"> *</span><br><span class="line"> * @param Higher Tile Region ID List</span><br><span class="line"> * @desc Tiles with listed Region ID will be shown above characters (passage unchanged). Separate with commas. (Disable: 0)</span><br><span class="line"> * Use 0 if you do not wish to make use of this property.</span><br><span class="line"> * @default 0</span><br><span class="line"> *</span><br><span class="line"> * @param Passable Tile Region ID List</span><br><span class="line"> * @desc Tiles with listed Region ID will be always passable. Separate multiple ID with commas. (Disable: 0)</span><br><span class="line"> * Use 0 if you do not wish to make use of this property.</span><br><span class="line"> * @default 0</span><br><span class="line"> * </span><br><span class="line"> * @param Impassable Tile Region ID List</span><br><span class="line"> * @desc Tiles with listed Region ID will not be passable. Separate multiple ID with commas. (Disable: 0)</span><br><span class="line"> * Use 0 if you do not wish to make use of this property.</span><br><span class="line"> * @default 0</span><br><span class="line"> * </span><br><span class="line"> * @help</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Introduction and Instructions</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * It's a pity multi-layered mapping is canceled since RMVX, and characters are </span><br><span class="line"> * no longer able to walk behind walls, which makes maps a bit of weird. With </span><br><span class="line"> * this plugin, you can set two terrain tags as wall top and wall front, and </span><br><span class="line"> * passage behind walls are calculated automatically. </span><br><span class="line"> *</span><br><span class="line"> * Or you can also set a terrain tag as Star Terrain Tag, which makes tiles to be</span><br><span class="line"> * star passage.</span><br><span class="line"> *</span><br><span class="line"> * Note: above tags only works for tiles in set A.</span><br><span class="line"> * </span><br><span class="line"> * You can also set lists of region IDs as following:</span><br><span class="line"> * Star Region ID: Tiles with these IDs will be star passage. </span><br><span class="line"> *</span><br><span class="line"> * Higher Tile Region ID: Tiles with these IDs will be shown above characters,</span><br><span class="line"> * with passage unchanged. </span><br><span class="line"> *</span><br><span class="line"> * Passable Tile Region ID: Tiles with these IDs will be always passable. </span><br><span class="line"> * (layer unchanged)</span><br><span class="line"> * </span><br><span class="line"> * Impassable Tile Region ID: Tiles with these IDs will be not passable. </span><br><span class="line"> *</span><br><span class="line"> * To disable certain function, set parameter as following:</span><br><span class="line"> * Wall Top Terrain Tag: a number greater than 7 (e.g. 99)</span><br><span class="line"> * Wall Front Terrain Tag: a number greater than 7 (e.g. 99)</span><br><span class="line"> * Default Wall Height: set to 0</span><br><span class="line"> * Star Terrain Tag: a number greater than 7 (e.g. 99)</span><br><span class="line"> * Star Region ID List: set to 0</span><br><span class="line"> * Higher Tile Region ID List: set to 0</span><br><span class="line"> * Passable Tile Region ID List: set to 0</span><br><span class="line"> * Impassable Tile Region ID List: set to 0</span><br><span class="line"> *</span><br><span class="line"> * Note: </span><br><span class="line"> * - 4-direction passage does not work on tiles with above tags/region id.</span><br><span class="line"> * - Events in higher layer of wall need to be set to above characters priority </span><br><span class="line"> *   in order to be displayed above the wall.</span><br><span class="line"> *</span><br><span class="line"> *</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Changelog</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * Version 0.82:</span><br><span class="line"> * - Modified: Added default parameter values.</span><br><span class="line"> * </span><br><span class="line"> * Version 0.81:</span><br><span class="line"> * - Modified: Pulgin name changed to: Enhanced Tile Passage</span><br><span class="line"> * - New: Passable Tile Region ID function (force tile to be passable)</span><br><span class="line"> * - Modified: Plugin parameter description improved</span><br><span class="line"> * </span><br><span class="line"> * Version 0.80:</span><br><span class="line"> * - New: Higher Tile Region ID function (force tile to be higher tile)</span><br><span class="line"> * - New: Impassable Tile Region ID function (force tile to be impassable)</span><br><span class="line"> * - Removed: Removed Default Wall Thickness property, which is not so useful</span><br><span class="line"> * - Removed: To minimize side-effects on map, terrain tags only works for </span><br><span class="line"> * 			  tiles in set A now</span><br><span class="line"> * </span><br><span class="line"> * Version 0.71:</span><br><span class="line"> * - Modified: Improved passage check logic</span><br><span class="line"> * - Modified: Improved layer check logic</span><br><span class="line"> * </span><br><span class="line"> * Version 0.70:</span><br><span class="line"> * - New: Can use multiple star region IDs</span><br><span class="line"> * - Modified: Minor bug fix</span><br><span class="line"> * </span><br><span class="line"> * Version 0.60:</span><br><span class="line"> * - Modified: Improved passage check logic</span><br><span class="line"> * </span><br><span class="line"> * Version 0.51:</span><br><span class="line"> * - Modified: Optimized logic for passage and higher layer check</span><br><span class="line"> * - Modified: Disabled default wall thickness by default</span><br><span class="line"> * </span><br><span class="line"> * Version 0.50:</span><br><span class="line"> * - New: Star region ID can be used now</span><br><span class="line"> * - New: Higher and lower layers of wall tile are calculated automatically now</span><br><span class="line"> * - New: B~E tiles can be displayed above walls. So no need to modify </span><br><span class="line"> *   additional star passage</span><br><span class="line"> * - Modified: Rearrange the order of parameters</span><br><span class="line"> * </span><br><span class="line"> * Version 0.01:</span><br><span class="line"> * - Finished prototype</span><br><span class="line"> *</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Term of Use</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * Free for use in non-commercial or commercial RMMV projects</span><br><span class="line"> * Please credit AndrewX</span><br><span class="line"> * </span><br><span class="line"> */</span></span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line">	<span class="comment">// Parameter Variables</span></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> parameters = PluginManager.parameters(<span class="string">'AndrewX_EnhancedTilePassage'</span>);</span><br><span class="line">	<span class="keyword">var</span> starTag = <span class="built_in">Number</span>(parameters[<span class="string">'Star Terrain Tag'</span>] || <span class="number">99</span>);</span><br><span class="line">	<span class="keyword">var</span> starId = parameters[<span class="string">'Star Region ID List'</span>].split(<span class="string">","</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; starId.length; i++) &#123;</span><br><span class="line">		starId[i] = <span class="built_in">Number</span>(starId[i]);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> higherId = parameters[<span class="string">'Higher Tile Region ID List'</span>].split(<span class="string">","</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; higherId.length; i++) &#123;</span><br><span class="line">		higherId[i] = <span class="built_in">Number</span>(higherId[i]);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> passableId = parameters[<span class="string">'Passable Tile Region ID List'</span>].split(<span class="string">","</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; higherId.length; i++) &#123;</span><br><span class="line">		passableId[i] = <span class="built_in">Number</span>(passableId[i]);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> impassableId = parameters[<span class="string">'Impassable Tile Region ID List'</span>].split(<span class="string">","</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; higherId.length; i++) &#123;</span><br><span class="line">		impassableId[i] = <span class="built_in">Number</span>(impassableId[i]);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> topTag = <span class="built_in">Number</span>(parameters[<span class="string">'Wall Top Terrain Tag'</span>] || <span class="number">99</span>);</span><br><span class="line">	<span class="keyword">var</span> frontTag = <span class="built_in">Number</span>(parameters[<span class="string">'Wall Front Terrain Tag'</span>] || <span class="number">99</span>);</span><br><span class="line">	<span class="keyword">var</span> defWallHeight = <span class="built_in">Number</span>(parameters[<span class="string">'Default Wall Height'</span>] || <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line">	<span class="comment">// Private tag check for game map</span></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">	Game_Map.prototype._hasTag = <span class="function"><span class="keyword">function</span>(<span class="params">x, y, t</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> flags = <span class="keyword">this</span>.tilesetFlags();</span><br><span class="line">		<span class="keyword">var</span> tiles = <span class="keyword">this</span>.allTiles(x, y);</span><br><span class="line">		<span class="keyword">if</span> (tiles[<span class="number">0</span>] === <span class="number">0</span> &amp;&amp; tiles[<span class="number">1</span>] === <span class="number">0</span> &amp;&amp; tiles[<span class="number">2</span>] === <span class="number">0</span> &amp;&amp; tiles[<span class="number">3</span>] === <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ((flags[tiles[<span class="number">3</span>]] &amp; <span class="number">0xF000</span>) === (t &lt;&lt; <span class="number">12</span>)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line">	<span class="comment">// Private passage check for upper layers</span></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">	Game_Map.prototype._normalCheckPassage = <span class="function"><span class="keyword">function</span>(<span class="params">x, y, bit</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> flags = <span class="keyword">this</span>.tilesetFlags();</span><br><span class="line">		<span class="keyword">var</span> tiles = <span class="keyword">this</span>.allTiles(x, y);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; tiles.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">var</span> flag = flags[tiles[i]];</span><br><span class="line">			<span class="keyword">if</span> ((flag &amp; <span class="number">0x10</span>) !== <span class="number">0</span>) <span class="comment">// [*] No effect on passage</span></span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> ((flag &amp; bit) === <span class="number">0</span>) <span class="comment">// [o] Passable</span></span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span> ((flag &amp; bit) === bit) <span class="comment">// [x] Impassable</span></span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line">	<span class="comment">// Modified passage check</span></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">	AndrewX.ETP.checkPassage = Game_Map.prototype.checkPassage;</span><br><span class="line">	Game_Map.prototype.checkPassage = <span class="function"><span class="keyword">function</span>(<span class="params">x, y, bit</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> flags = <span class="keyword">this</span>.tilesetFlags();</span><br><span class="line">		<span class="keyword">var</span> tiles = <span class="keyword">this</span>.allTiles(x, y);</span><br><span class="line">		<span class="keyword">var</span> mapHeight = $dataMap.height;</span><br><span class="line">		<span class="keyword">var</span> upperTop = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">var</span> upperFront = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">var</span> lowerTop = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">var</span> lowerFront = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> ($gameMap.regionId(x, y) &amp;&amp; starId.contains($gameMap.regionId(x, y))) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ($gameMap.regionId(x, y) &amp;&amp; passableId.contains($gameMap.regionId(x, y))) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ($gameMap.regionId(x, y) &amp;&amp; impassableId.contains($gameMap.regionId(x, y))) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!(<span class="keyword">this</span>._hasTag(x, y, topTag) || <span class="keyword">this</span>._hasTag(x, y, frontTag) ||</span><br><span class="line">				<span class="keyword">this</span>._hasTag(x, y, starTag))) &#123;</span><br><span class="line">			<span class="keyword">return</span> AndrewX.ETP.checkPassage.call(<span class="keyword">this</span>, x, y, bit);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>._hasTag(x, y, starTag)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._hasTag(x, y, frontTag)) &#123;</span><br><span class="line">			<span class="keyword">var</span> j = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y + j &lt; mapHeight &amp;&amp; <span class="keyword">this</span>._hasTag(x, y + j, frontTag)) &#123;</span><br><span class="line">				lowerFront++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			j = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y - j &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>._hasTag(x, y - j, frontTag)) &#123;</span><br><span class="line">				upperFront++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (y - j &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>._hasTag(x, y - j, topTag)) &#123;</span><br><span class="line">				upperTop++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (upperTop === <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">this</span>._normalCheckPassage(x, y, bit);</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (lowerFront + <span class="number">1</span> &lt;= upperTop) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">this</span>._normalCheckPassage(x, y, bit);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._hasTag(x, y, topTag)) &#123;</span><br><span class="line">			<span class="keyword">var</span> j = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y - j &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>._hasTag(x, y - j, topTag)) &#123;</span><br><span class="line">				upperTop++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			j = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y + j &lt; mapHeight &amp;&amp; <span class="keyword">this</span>._hasTag(x, y + j, topTag)) &#123;</span><br><span class="line">				lowerTop++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (y + j &lt; mapHeight &amp;&amp; <span class="keyword">this</span>._hasTag(x, y + j, frontTag)) &#123;</span><br><span class="line">				lowerFront++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (lowerFront === <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (upperTop + <span class="number">1</span> &lt;= defWallHeight) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">this</span>._normalCheckPassage(x, y, bit);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (upperTop + <span class="number">1</span> &lt;= lowerFront) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">this</span>._normalCheckPassage(x, y, bit);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line">	<span class="comment">// Private tag check for tilemap</span></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">	Tilemap.prototype._tileHasTag = <span class="function"><span class="keyword">function</span>(<span class="params">x, y, t</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> tileId = <span class="keyword">this</span>._readMapData(x, y, <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span> ((<span class="keyword">this</span>.flags[tileId] &amp; <span class="number">0xF000</span>) === (t &lt;&lt; <span class="number">12</span>)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line">	<span class="comment">// Private new higher tile check</span></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">	Tilemap.prototype._isHigherTileNew = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> mapHeight = <span class="keyword">this</span>._mapHeight;</span><br><span class="line">		<span class="keyword">var</span> upperTop = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">var</span> upperFront = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">var</span> lowerTop = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">var</span> lowerFront = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> ($gameMap.regionId(x, y + <span class="number">1</span>) &amp;&amp; starId.contains($gameMap.regionId(x, y + <span class="number">1</span>))) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125; <span class="comment">//if lower tile is star passage</span></span><br><span class="line">		<span class="keyword">if</span> ($gameMap.regionId(x, y) &amp;&amp; starId.contains($gameMap.regionId(x, y))) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> ($gameMap.regionId(x, y) &amp;&amp; higherId.contains($gameMap.regionId(x, y))) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._tileHasTag(x, y, starTag)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._tileHasTag(x, y, frontTag)) &#123;</span><br><span class="line">			<span class="keyword">var</span> i = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y + i &lt; mapHeight &amp;&amp; <span class="keyword">this</span>._tileHasTag(x, y + i, frontTag)) &#123;</span><br><span class="line">				lowerFront++;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			i = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y - i &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>._tileHasTag(x, y - i, frontTag)) &#123;</span><br><span class="line">				upperFront++;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (y - i &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>._tileHasTag(x, y - i, topTag)) &#123;</span><br><span class="line">				upperTop++;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (upperTop === <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (lowerFront + <span class="number">1</span> &lt;= upperTop) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>._tileHasTag(x, y, topTag)) &#123;</span><br><span class="line">			<span class="keyword">var</span> i = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y - i &gt;= <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>._tileHasTag(x, y - i, topTag)) &#123;</span><br><span class="line">				upperTop++;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			i = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (y + i &lt; mapHeight &amp;&amp; <span class="keyword">this</span>._tileHasTag(x, y + i, topTag)) &#123;</span><br><span class="line">				lowerTop++;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (y + i &lt; mapHeight &amp;&amp; <span class="keyword">this</span>._tileHasTag(x, y + i, frontTag)) &#123;</span><br><span class="line">				lowerFront++;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (lowerFront === <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (upperTop + <span class="number">1</span> &lt;= defWallHeight) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (upperTop + <span class="number">1</span> &lt;= lowerFront) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line">	<span class="comment">// Modified _paintTiles</span></span><br><span class="line">	<span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">	AndrewX.ETP._paintTiles = Tilemap.prototype._paintTiles;</span><br><span class="line">	Tilemap.prototype._paintTiles = <span class="function"><span class="keyword">function</span>(<span class="params">startX, startY, x, y</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (($gameMap.regionId(startX + x, startY + y) &amp;&amp;</span><br><span class="line">				starId.contains($gameMap.regionId(startX + x, startY + y))) ||</span><br><span class="line">			($gameMap.regionId(startX + x, startY + y) &amp;&amp;</span><br><span class="line">				higherId.contains($gameMap.regionId(startX + x, startY + y))) ||</span><br><span class="line">			<span class="keyword">this</span>._tileHasTag(startX + x, startY + y, starTag) ||</span><br><span class="line">			<span class="keyword">this</span>._tileHasTag(startX + x, startY + y, topTag) ||</span><br><span class="line">			<span class="keyword">this</span>._tileHasTag(startX + x, startY + y, frontTag)) &#123;</span><br><span class="line">			<span class="keyword">var</span> tableEdgeVirtualId = <span class="number">10000</span>;</span><br><span class="line">			<span class="keyword">var</span> mx = startX + x;</span><br><span class="line">			<span class="keyword">var</span> my = startY + y;</span><br><span class="line">			<span class="keyword">var</span> dx = (mx * <span class="keyword">this</span>._tileWidth).mod(<span class="keyword">this</span>._layerWidth);</span><br><span class="line">			<span class="keyword">var</span> dy = (my * <span class="keyword">this</span>._tileHeight).mod(<span class="keyword">this</span>._layerHeight);</span><br><span class="line">			<span class="keyword">var</span> lx = dx / <span class="keyword">this</span>._tileWidth;</span><br><span class="line">			<span class="keyword">var</span> ly = dy / <span class="keyword">this</span>._tileHeight;</span><br><span class="line">			<span class="keyword">var</span> tileId0 = <span class="keyword">this</span>._readMapData(mx, my, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">var</span> tileId1 = <span class="keyword">this</span>._readMapData(mx, my, <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">var</span> tileId2 = <span class="keyword">this</span>._readMapData(mx, my, <span class="number">2</span>);</span><br><span class="line">			<span class="keyword">var</span> tileId3 = <span class="keyword">this</span>._readMapData(mx, my, <span class="number">3</span>);</span><br><span class="line">			<span class="keyword">var</span> shadowBits = <span class="keyword">this</span>._readMapData(mx, my, <span class="number">4</span>);</span><br><span class="line">			<span class="keyword">var</span> upperTileId1 = <span class="keyword">this</span>._readMapData(mx, my - <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">var</span> lowerTiles = [];</span><br><span class="line">			<span class="keyword">var</span> upperTiles = [];</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> isHigher = <span class="keyword">this</span>._isHigherTileNew(mx, my);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (isHigher) &#123;</span><br><span class="line">				upperTiles.push(tileId0);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				lowerTiles.push(tileId0);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (isHigher) &#123;</span><br><span class="line">				upperTiles.push(tileId1);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				lowerTiles.push(tileId1);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			lowerTiles.push(-shadowBits);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">this</span>._isTableTile(upperTileId1) &amp;&amp; !<span class="keyword">this</span>._isTableTile(tileId1)) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!Tilemap.isShadowingTile(tileId0)) &#123;</span><br><span class="line">					lowerTiles.push(tableEdgeVirtualId + upperTileId1);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">this</span>._isOverpassPosition(mx, my)) &#123;</span><br><span class="line">				upperTiles.push(tileId2);</span><br><span class="line">				upperTiles.push(tileId3);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (isHigher) &#123;</span><br><span class="line">					upperTiles.push(tileId2);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					lowerTiles.push(tileId2);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (isHigher) &#123;</span><br><span class="line">					upperTiles.push(tileId3);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					lowerTiles.push(tileId3);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> count = <span class="number">1000</span> + <span class="keyword">this</span>.animationCount - my;</span><br><span class="line">			<span class="keyword">var</span> frameUpdated = (count % <span class="number">30</span> === <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">this</span>._animationFrame = <span class="built_in">Math</span>.floor(count / <span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> lastLowerTiles = <span class="keyword">this</span>._readLastTiles(<span class="number">0</span>, lx, ly);</span><br><span class="line">			<span class="keyword">if</span> (!lowerTiles.equals(lastLowerTiles) ||</span><br><span class="line">				(Tilemap.isTileA1(tileId0) &amp;&amp; frameUpdated)) &#123;</span><br><span class="line">				<span class="keyword">this</span>._lowerBitmap.clearRect(dx, dy, <span class="keyword">this</span>._tileWidth, <span class="keyword">this</span>._tileHeight);</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; lowerTiles.length; i++) &#123;</span><br><span class="line">					<span class="keyword">var</span> lowerTileId = lowerTiles[i];</span><br><span class="line">					<span class="keyword">if</span> (lowerTileId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">this</span>._drawShadow(<span class="keyword">this</span>._lowerBitmap, shadowBits, dx, dy);</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (lowerTileId &gt;= tableEdgeVirtualId) &#123;</span><br><span class="line">						<span class="keyword">this</span>._drawTableEdge(<span class="keyword">this</span>._lowerBitmap, upperTileId1, dx, dy);</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">this</span>._drawTile(<span class="keyword">this</span>._lowerBitmap, lowerTileId, dx, dy);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">this</span>._writeLastTiles(<span class="number">0</span>, lx, ly, lowerTiles);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> lastUpperTiles = <span class="keyword">this</span>._readLastTiles(<span class="number">1</span>, lx, ly);</span><br><span class="line">			<span class="keyword">if</span> (!upperTiles.equals(lastUpperTiles)) &#123;</span><br><span class="line">				<span class="keyword">this</span>._upperBitmap.clearRect(dx, dy, <span class="keyword">this</span>._tileWidth, <span class="keyword">this</span>._tileHeight);</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; upperTiles.length; j++) &#123;</span><br><span class="line">					<span class="keyword">this</span>._drawTile(<span class="keyword">this</span>._upperBitmap, upperTiles[j], dx, dy);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">this</span>._writeLastTiles(<span class="number">1</span>, lx, ly, upperTiles);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			AndrewX.ETP._paintTiles.call(<span class="keyword">this</span>, startX, startY, x, y);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/" data-id="ciikc6hoc000gwovic9gfm64c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+          <a href="http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/#comments" class="article-comment-link"><i class="fa fa-comments"></i>评论</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RPG-Maker-MV/">RPG Maker MV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图块/">图块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通行度/">通行度</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </section>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <a href="biography.html"><img src="http://andrewxeno.github.io/css/images/avatar.png" alt="AndrewXeno Avatar"></a>
+    <h1>AndrewX</h1>
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="weibo" href="http://weibo.com/andrewx" target="_blank"><i class="icon fa fa-weibo"></i></a></li>
+      
+        <li><a class="social-tooltip" title="twitter" href="https://twitter.com/AndrewXeno" target="_blank"><i class="icon fa fa-twitter"></i></a></li>
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/AndrewXeno" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="/" target="_blank"><i class="icon fa fa-rss"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/2015/12/22/OverpassTile-Fix/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          OverpassTile修正 OverpassTile Fix
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/posts/2015/12/21/Hello-World/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">Hello World</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/Layered-Animation/" class="title">分层动画 Layered Animation</a></p>
+              <p class="item-date"><time datetime="2015-12-22T07:24:44.000Z" itemprop="datePublished">2015-12-22</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/OverpassTile-Fix/" class="title">OverpassTile修正 OverpassTile Fix</a></p>
+              <p class="item-date"><time datetime="2015-12-22T07:19:08.000Z" itemprop="datePublished">2015-12-22</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/Enhanced-Tile-Passage/" class="title">图块通行度加强 Enhanced Tile Passage</a></p>
+              <p class="item-date"><time datetime="2015-12-22T05:49:52.000Z" itemprop="datePublished">2015-12-22</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/杂/">杂</a></p>
+              <p class="item-title"><a href="/posts/2015/12/21/Hello-World/" class="title">Hello World</a></p>
+              <p class="item-date"><time datetime="2015-12-21T12:49:52.000Z" itemprop="datePublished">2015-12-21</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RM-Plugin/">RM Plugin</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/RPG-Maker-MV/" style="font-size: 20px;">RPG Maker MV</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/图块/" style="font-size: 15px;">图块</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a> <a href="/tags/通行度/" style="font-size: 15px;">通行度</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <p>&copy; 2015 AndrewX</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'andrewxeno';
+  
+  
+  var disqus_url = 'http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+    _st('install','Jr-Qgp9gBsPysySZnfyY','2.0.0');
+  </script>
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/layout-config.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
