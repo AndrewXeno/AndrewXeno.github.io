@@ -1838,6 +1838,7 @@ i.icon:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    cursor: pointer;
   }
   .main-body-inner #sidebar .sidebar-toggle .toggle {
     line-height: 38px;
@@ -1892,9 +1893,8 @@ i.icon:before {
   .main-body-inner #sidebar.expend .sidebar-top {
     display: block;
   }
-  .main-body-inner #sidebar.expend .sidebar-top .social-links .social-tooltip:after,
-  .main-body-inner #sidebar.expend .sidebar-top .social-links .social-tooltip:before {
-    display: none;
+  .main-body-inner #sidebar.expend .sidebar-top .social-links li a:hover i:before {
+    color: #000;
   }
   #main .main-body-header,
   #main .archive-year-wrap {
