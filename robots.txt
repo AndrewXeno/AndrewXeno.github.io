@@ -1,2 +1,6 @@
 User-agent: *
-Sitemap: http://andrewxeno.github.io/sitemap/sitemap.xml
+Sitemap: http://andrewxeno.github.io/sitemap.xml
+Sitemap: http://andrewxeno.github.io/post-sitemap.xml
+Sitemap: http://andrewxeno.github.io/page-sitemap.xml
+Sitemap: http://andrewxeno.github.io/category-sitemap.xml
+Sitemap: http://andrewxeno.github.io/tag-sitemap.xml
