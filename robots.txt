@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://andrewxeno.github.io/sitemap/sitemap.xml
