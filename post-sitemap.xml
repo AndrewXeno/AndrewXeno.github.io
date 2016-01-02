@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/</loc>
+        <lastmod>2016-01-02T02:48:43.023Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/</loc>
-        <lastmod>2015-12-23T16:07:33.142Z</lastmod>
+        <lastmod>2016-01-01T16:26:00.275Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,7 +24,7 @@
 
     <url>
         <loc>http://andrewxeno.github.io/posts/2015/12/22/OverpassTile-Fix/</loc>
-        <lastmod>2015-12-23T09:36:57.420Z</lastmod>
+        <lastmod>2016-01-01T08:17:45.389Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

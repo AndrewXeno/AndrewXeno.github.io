@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>图块遮挡角色半透明 Translucent Character Behind Tile | AndrewX; Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="RPG Maker MV,半透明,图块,角色,遮挡">
+  
+
+  <meta name="description" content="插件简介：这个插件能实现被图块遮挡的角色呈现半透明的效果，帮助玩家确认被遮挡的角色的位置。原理很简单，就是为所有的角色（包括主角，跟随队友，事件，交通工具）在与高层图块相同的层级（z = 4）上建立半透明的sprite。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图块遮挡角色半透明 Translucent Character Behind Tile">
+<meta property="og:url" content="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/index.html">
+<meta property="og:site_name" content="AndrewX; Notes">
+<meta property="og:description" content="插件简介：这个插件能实现被图块遮挡的角色呈现半透明的效果，帮助玩家确认被遮挡的角色的位置。原理很简单，就是为所有的角色（包括主角，跟随队友，事件，交通工具）在与高层图块相同的层级（z = 4）上建立半透明的sprite。">
+<meta property="og:image" content="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT01.png">
+<meta property="og:image" content="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT02.png">
+<meta property="og:image" content="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT03.png">
+<meta property="og:image" content="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT04.png">
+<meta property="og:updated_time" content="2016-01-02T02:48:43.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图块遮挡角色半透明 Translucent Character Behind Tile">
+<meta name="twitter:description" content="插件简介：这个插件能实现被图块遮挡的角色呈现半透明的效果，帮助玩家确认被遮挡的角色的位置。原理很简单，就是为所有的角色（包括主角，跟随队友，事件，交通工具）在与高层图块相同的层级（z = 4）上建立半透明的sprite。">
+  
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#0277bd">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#0277bd">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+    
+      <style type="text/css">
+          .logo { background-image:url(http://andrewxeno.github.io/css/images/logo-header.png);
+          
+            width: 600px;
+          
+          
+            height: 90px;
+          
+          
+            -webkit-background-size: 600px 90px;
+            -moz-background-size: 600px 90px;
+            background-size: 600px 90px;
+          
+          }
+
+        
+          #footer .logo {
+          
+            width: 600px;
+          
+          
+            height: 90px;
+          
+          
+            -webkit-background-size: 600px 90px;
+            -moz-background-size: 600px 90px;
+            background-size: 600px 90px;
+          
+          }
+        
+      </style>
+    
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/">
+              <img src="http://andrewxeno.github.io/css/images/logo-header.png" alt="site logo">
+            </a>
+          </h1>
+          
+        </div>
+        <div id="header-placeholder">
+          <div id="header-inner" class="nav-container">
+            <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+            <div class="nav-container-inner">
+              <ul id="main-nav">
+                
+                  <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">主页</a></li>
+                
+                      <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/RM-Plugin/">RM Plugin</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/杂/">杂</a></li></ul>
+                    
+                  <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/About/index.html">关于</a></li>
+                
+              </ul>
+              <nav id="sub-nav">
+                <div id="search-form-wrap">
+                  
+                    <div class="search-form">
+                      <input type="text" class="st-default-search-input search-form-input" placeholder="搜索">
+                    </div>
+                  
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/RM-Plugin/">RM Plugin</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-Translucent-Character-Behind-Tile" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      图块遮挡角色半透明 Translucent Character Behind Tile
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/posts/2016/01/02/Translucent-Character-Behind-Tile/" class="article-date">
+  <time datetime="2016-01-01T14:32:58.000Z" itemprop="datePublished">2016-01-02</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h4 id="u63D2_u4EF6_u7B80_u4ECB_uFF1A"><a href="#u63D2_u4EF6_u7B80_u4ECB_uFF1A" class="headerlink" title="插件简介："></a>插件简介：</h4><p>这个插件能实现被图块遮挡的角色呈现半透明的效果，帮助玩家确认被遮挡的角色的位置。原理很简单，就是为所有的角色（包括主角，跟随队友，事件，交通工具）在与高层图块相同的层级（z = 4）上建立半透明的sprite。<br><a id="more"></a></p>
+<h4 id="u622A_u56FE_uFF1A"><a href="#u622A_u56FE_uFF1A" class="headerlink" title="截图："></a>截图：</h4><img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT01.png" alt="TCBT01.png" title="">
+<h4 id="u98DF_u7528_u65B9_u6CD5_uFF1A"><a href="#u98DF_u7528_u65B9_u6CD5_uFF1A" class="headerlink" title="食用方法："></a>食用方法：</h4><h5 id="1-__u5B89_u88C5_uFF1A"><a href="#1-__u5B89_u88C5_uFF1A" class="headerlink" title="1. 安装："></a>1. 安装：</h5><p>直接在插件管理器中启用。</p>
+<h5 id="2-__u8BBE_u5B9A_u53C2_u6570_uFF1A"><a href="#2-__u8BBE_u5B9A_u53C2_u6570_uFF1A" class="headerlink" title="2. 设定参数："></a>2. 设定参数：</h5><ul>
+<li><p><code>Default Opacity Rate</code>:<br>  图块上半透明角色sprite的不透明度将为Opacity Rate与角色原本的不透明度的乘积。此处设定的是默认的Opacity Rate。<br>  有效参数是[0, 1]之间的小数。<br>  本参数默认值为0.2。</p>
+</li>
+<li><p><code>Opacity Percentage Variable ID</code>:<br>  你也可以使用一个游戏内变量来动态地控制高层角色sprite。本参数接收一个游戏内变量的ID，sprite的不透明度将由该变量的值决定。由于RM中内建游戏变量只能是整数，所以变量里的有效值为百分比的整数部分，即在[0, 100]之间的整数。实际Opacity Rate将为该值除以100。<br>  如果你使用变量控制不透明度，那么Default Opacity Rate将被忽略。记得调节相应的变量数值以使高层sprite生效。<br>  该参数设定为0表示不启用这项功能。<br>  本参数默认值为0。</p>
+</li>
+<li><p><code>Enable by Default</code>:<br>  设定高层角色sprite是否默认起效。如果设定为false，那么默认不会显示任何高层角色sprite。你需要使用下面的插件指令或事件注释标签来手动开启。<br>  本参数默认值为true。</p>
+</li>
+</ul>
+<h5 id="3-__u63D2_u4EF6_u6307_u4EE4_uFF1A"><a href="#3-__u63D2_u4EF6_u6307_u4EE4_uFF1A" class="headerlink" title="3. 插件指令："></a>3. 插件指令：</h5><p>插件指令可以临时调整某角色上是否显示高层sprite。</p>
+<ul>
+<li><code>HighLayerCharacterSprite EventID true</code><br>  #开启以EventID为ID的事件的高层角色sprite</li>
+<li><p><code>HighLayerCharacterSprite EventID false</code><br>  #关闭以EventID为ID的事件的高层角色sprite</p>
+<p>  其中EventID为-1时代表主角和跟随队友，0为当前事件，或者其他具体事件ID。</p>
+</li>
+</ul>
+<h5 id="4-__u4E8B_u4EF6_u6CE8_u91CA_u6807_u7B7E"><a href="#4-__u4E8B_u4EF6_u6CE8_u91CA_u6807_u7B7E" class="headerlink" title="4. 事件注释标签"></a>4. 事件注释标签</h5><p>通过设置事件注释标签可以修改某事件默认是否显示高层角色sprite。<br>注意这里的事件注释标签不是事件窗口上方的备注（Note）区，而是事件执行内容内通过流程控制-&gt;注释（comment）指令加入的注释内容。使用事件注释而非备注可以允许你为同一个事件的不同页面定义不同的高层角色sprite的可见性。你可以在注释指令里使用如下标签（包括尖括号）：</p>
+<ul>
+<li><code>&lt;Enable High Layer Character Sprite&gt;</code><br>  #开启这个事件的高层角色sprite</li>
+<li><code>&lt;Disable High Layer Character Sprite&gt;</code><br>  #关闭这个事件的高层角色sprite<img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT02.png" alt="TCBT02.png" title="">
+</li>
+</ul>
+<h4 id="u6CE8_u610F_u4E8B_u9879_uFF1A"><a href="#u6CE8_u610F_u4E8B_u9879_uFF1A" class="headerlink" title="注意事项："></a>注意事项：</h4><ul>
+<li>对于事件，插件指令和事件注释标签的效果将持续到地图切换，对于主角和队友效果则切换地图后依然持续。</li>
+<li>插件指令和事件注释标签的效果会互相覆盖。</li>
+<li>当某事件的某一页被激活，该页面的事件注释标签就会被执行，假如该页没有定义标签，那么高层角色sprite的可见性维持不变。</li>
+<li>副作用：角色重叠的话半透明的sprite也会重叠在一起…这个目前感觉无解，如果有解决思路可以留言，谢~</li>
+<li>配合图块通行增强插件和OverpassTile插件及其Fix插件一同食用效果更佳~ <img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT03.png" alt="TCBT03.png" title="">
+<img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT04.png" alt="TCBT04.png" title="">
+</li>
+</ul>
+<h4 id="u66F4_u65B0_u5C65_u5386_uFF1A"><a href="#u66F4_u65B0_u5C65_u5386_uFF1A" class="headerlink" title="更新履历："></a>更新履历：</h4><h5 id="Version_0-10_3A"><a href="#Version_0-10_3A" class="headerlink" title="Version 0.10:"></a>Version 0.10:</h5><ul>
+<li>完成插件原型</li>
+</ul>
+<h4 id="u63D2_u4EF6_u5185_u5BB9_uFF1A"><a href="#u63D2_u4EF6_u5185_u5BB9_uFF1A" class="headerlink" title="插件内容："></a>插件内容：</h4><figure class="highlight javascript"><figcaption><span>插件内容</span><a href="https://github.com/AndrewXeno/AndrewX-RPGMakerMV-Plugins/raw/master/plugins/AndrewX_TranslucentCharacterBehindTile.js" target="_blank" rel="external">AndrewX_TranslucentCharacterBehindTile.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="comment">// AndrewX - Translucent Character Behind Tile</span></span><br><span class="line"><span class="comment">// AndrewX_TranslucentCharacterBehindTile.js</span></span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="keyword">var</span> AndrewX = AndrewX || &#123;&#125;;</span><br><span class="line">AndrewX.TCBT = AndrewX.TCBT || &#123;&#125;;</span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"><span class="comment">/*:</span><br><span class="line"> * @plugindesc v0.10 Display a translucent character sprite when the character is behind a tile.</span><br><span class="line"> * @author AndrewX</span><br><span class="line"> *</span><br><span class="line"> * @param Default Opacity Rate</span><br><span class="line"> * @desc The default opacity rate for high layer character sprites. (Default: 0.2)</span><br><span class="line"> * @default 0.2</span><br><span class="line"> *</span><br><span class="line"> * @param Opacity Percentage Variable ID</span><br><span class="line"> * @desc Set a variable ID to use that variable to control opacity rate. Use 0 if you do not need this feature. (Default: 0)</span><br><span class="line"> * The real opacity rate will be the value of that variable divide by 100.</span><br><span class="line"> * @default 0</span><br><span class="line"> * </span><br><span class="line"> * @param Enable by Default</span><br><span class="line"> * @desc Set to "false" if you do not want high layer sprite to be displayed by default. (Default: true)</span><br><span class="line"> * @default true</span><br><span class="line"> * </span><br><span class="line"> * @help</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Introduction and Instructions</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * This plugin will create high layer translucent sprites for characters </span><br><span class="line"> * (player, followers, events, vehicles), which are at the same layer as upper </span><br><span class="line"> * tiles (i.e. z = 4), so that when a character is covered by the tile, the </span><br><span class="line"> * high layer translucent sprite will indicate where he is.</span><br><span class="line"> *</span><br><span class="line"> * Usage:</span><br><span class="line"> * 1. Installed: Just enable the plugin in the Plugin Manager.</span><br><span class="line"> * </span><br><span class="line"> * 2. Setup parameters.</span><br><span class="line"> *  a. Default Opacity Rate: </span><br><span class="line"> *      The opacity for the high layer character sprites will be the product </span><br><span class="line"> *      of the character's original opacity and the opacity rate you set in </span><br><span class="line"> *      this plugin. This parameter is the default opacity rate. </span><br><span class="line"> *      Valid value will be a number in range [0, 1]. </span><br><span class="line"> *      The default value for this parameter is 0.2.</span><br><span class="line"> *  b. Opacity Percentage Variable ID:</span><br><span class="line"> *      You can also use a variable to get dynamic control of the high layer </span><br><span class="line"> *      sprites' opacity. This parameter takes in a variable ID in your game,</span><br><span class="line"> *      and the opacity will be determined by the value of that variable.</span><br><span class="line"> *      Note: As in RM, builtin variables only support integers. Thus, the </span><br><span class="line"> *      valid value in the variable is a percentage number in range [0, 100]. </span><br><span class="line"> *      The actual opacity rate will be the variable's value divide by 100.  </span><br><span class="line"> *      If you use the variable to control opacity, the Default Opacity Rate</span><br><span class="line"> *      will be ignored. Remember to adjust the variable you assigned to make</span><br><span class="line"> *      the sprites to work.</span><br><span class="line"> *      Use 0 if you do not need this feature.</span><br><span class="line"> *      The default value for this parameter is 0. </span><br><span class="line"> *  c. Enable by Default:</span><br><span class="line"> *      Whether the high layer sprites should work by default. If you set to</span><br><span class="line"> *      "false", no high layer character sprite will be displayed </span><br><span class="line"> *      automatically. You need to enable them manually by plugin commands or</span><br><span class="line"> *      event comment tags.</span><br><span class="line"> *      The default value for this parameter is true. </span><br><span class="line"> *      </span><br><span class="line"> * 3. Plugin Commands:</span><br><span class="line"> *  Use plugin commands to modify high layer character sprite's visibility of</span><br><span class="line"> *  an event temporarily:</span><br><span class="line"> * 	</span><br><span class="line"> *      HighLayerCharacterSprite EventID true</span><br><span class="line"> *      # Enable high layer sprite for the event</span><br><span class="line"> *          </span><br><span class="line"> *      HighLayerCharacterSprite EventID false</span><br><span class="line"> *      # Disable high layer sprite for the event</span><br><span class="line"> *</span><br><span class="line"> *          EventID = number for specific event</span><br><span class="line"> *          EventID = 0 for "this" event</span><br><span class="line"> *          EventID = -1 for player and followers</span><br><span class="line"> *</span><br><span class="line"> * 4. Event Comment Tags</span><br><span class="line"> *  You can use event comment tags to set whether an event should display </span><br><span class="line"> *  high layer character sprite by default.</span><br><span class="line"> *  Event Comment Tags are set within comments in event contents of an event </span><br><span class="line"> *  page. This will enable you to set different translucent sprite visibilities</span><br><span class="line"> *  in different pages for the same event.</span><br><span class="line"> *  </span><br><span class="line"> *      &lt;Enable High Layer Character Sprite&gt;</span><br><span class="line"> *      # Enable high layer sprite for this event</span><br><span class="line"> *</span><br><span class="line"> *      &lt;Disable High Layer Character Sprite&gt;</span><br><span class="line"> *      # Disable high layer sprite for this event</span><br><span class="line"> *</span><br><span class="line"> *  To use these tags, in an event page, add Event Commands "Comment" in Flow </span><br><span class="line"> *  Control, and write the tag.</span><br><span class="line"> *</span><br><span class="line"> * <span class="doctag">NOTE:</span></span><br><span class="line"> *  1. For events, the effect of plugin commands and event comment tags will </span><br><span class="line"> *  last until the map is changed. For player and followers, the effect will</span><br><span class="line"> *  remain.</span><br><span class="line"> *  2. Plugin commands and event comment tags can override each other.</span><br><span class="line"> *  3. Every time an event page is triggered, the event comment tag within</span><br><span class="line"> *  this page will be evaluated. If there is no defined comment tag, the </span><br><span class="line"> *  visibility of the high layer character sprite will not be changed.</span><br><span class="line"> * </span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Changelog</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * </span><br><span class="line"> * Version 0.10:</span><br><span class="line"> * - Finished prototype</span><br><span class="line"> *</span><br><span class="line"> * ============================================================================</span><br><span class="line"> * Term of Use</span><br><span class="line"> * ============================================================================</span><br><span class="line"> *</span><br><span class="line"> * Free for use in non-commercial or commercial RMMV projects</span><br><span class="line"> * Please credit AndrewX</span><br><span class="line"> * </span><br><span class="line"> */</span></span><br><span class="line"><span class="comment">//=============================================================================</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> parameters = PluginManager.parameters(<span class="string">'AndrewX_TranslucentCharacterBehindTile'</span>);</span><br><span class="line">	<span class="keyword">var</span> defaultOpacityRate = <span class="built_in">Number</span>(parameters[<span class="string">'Default Opacity Rate'</span>] || <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">var</span> opacityVariableId = <span class="built_in">Number</span>(parameters[<span class="string">'Opacity Percentage Variable ID'</span>] || <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">var</span> enableByDefault = parameters[<span class="string">'Enable by Default'</span>];</span><br><span class="line"></span><br><span class="line">	AndrewX.TCBT.initMembers = Game_CharacterBase.prototype.initMembers;</span><br><span class="line">	Game_CharacterBase.prototype.initMembers = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		AndrewX.TCBT.initMembers.call(<span class="keyword">this</span>);</span><br><span class="line">		<span class="keyword">if</span> (enableByDefault.toUpperCase() === <span class="string">'FALSE'</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>._showHighLayerCharaSprite = <span class="literal">false</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">this</span>._showHighLayerCharaSprite = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	AndrewX.TCBT.createCharacters = Spriteset_Map.prototype.createCharacters;</span><br><span class="line">	Spriteset_Map.prototype.createCharacters = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		AndrewX.TCBT.createCharacters.call(<span class="keyword">this</span>);</span><br><span class="line">		<span class="keyword">this</span>._highLayerCharaSprites = [];</span><br><span class="line">		$gameMap.events().forEach(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>._highLayerCharaSprites.push(<span class="keyword">new</span> Sprite_Character(event));</span><br><span class="line">		&#125;, <span class="keyword">this</span>);</span><br><span class="line">		$gameMap.vehicles().forEach(<span class="function"><span class="keyword">function</span>(<span class="params">vehicle</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>._highLayerCharaSprites.push(<span class="keyword">new</span> Sprite_Character(vehicle));</span><br><span class="line">		&#125;, <span class="keyword">this</span>);</span><br><span class="line">		$gamePlayer.followers().reverseEach(<span class="function"><span class="keyword">function</span>(<span class="params">follower</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>._highLayerCharaSprites.push(<span class="keyword">new</span> Sprite_Character(follower));</span><br><span class="line">		&#125;, <span class="keyword">this</span>);</span><br><span class="line">		<span class="keyword">this</span>._highLayerCharaSprites.push(<span class="keyword">new</span> Sprite_Character($gamePlayer));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>._highLayerCharaSprites.length; i++) &#123;</span><br><span class="line">			<span class="keyword">this</span>._tilemap.addChild(<span class="keyword">this</span>._highLayerCharaSprites[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	AndrewX.TCBT.update = Spriteset_Map.prototype.update;</span><br><span class="line">	Spriteset_Map.prototype.update = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		AndrewX.TCBT.update.call(<span class="keyword">this</span>);</span><br><span class="line">		<span class="keyword">var</span> characters = <span class="keyword">this</span>._characterSprites;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; characters.length; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!<span class="keyword">this</span>._highLayerCharaSprites[i]) &#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">this</span>._highLayerCharaSprites[i].z = <span class="number">4</span>;</span><br><span class="line">			<span class="keyword">var</span> opacityRate;</span><br><span class="line">			<span class="keyword">if</span> (opacityVariableId &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">				opacityRate = $gameVariables.value(opacityVariableId) / <span class="number">100</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				opacityRate = defaultOpacityRate;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">this</span>._highLayerCharaSprites[i].opacity = characters[i].opacity * opacityRate;</span><br><span class="line">			<span class="keyword">if</span> (characters[i]._character._showHighLayerCharaSprite === <span class="literal">true</span>) &#123;</span><br><span class="line">				<span class="keyword">this</span>._highLayerCharaSprites[i].visible = characters[i].visible;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">this</span>._highLayerCharaSprites[i].visible = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	AndrewX.TCBT.pluginCommand = Game_Interpreter.prototype.pluginCommand;</span><br><span class="line">	Game_Interpreter.prototype.pluginCommand = <span class="function"><span class="keyword">function</span>(<span class="params">command, args</span>) </span>&#123;</span><br><span class="line">		AndrewX.TCBT.pluginCommand.call(<span class="keyword">this</span>, command, args);</span><br><span class="line">		<span class="keyword">if</span> (command.toUpperCase() === <span class="string">'HIGHLAYERCHARACTERSPRITE'</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">eval</span>(args[<span class="number">0</span>]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (args[<span class="number">1</span>].toUpperCase() === <span class="string">'TRUE'</span>) &#123;</span><br><span class="line">					$gamePlayer._showHighLayerCharaSprite = <span class="literal">true</span>;</span><br><span class="line">					$gamePlayer.followers().reverseEach(<span class="function"><span class="keyword">function</span>(<span class="params">follower</span>) </span>&#123;</span><br><span class="line">						follower._showHighLayerCharaSprite = <span class="literal">true</span>;</span><br><span class="line">					&#125;, <span class="keyword">this</span>);</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (args[<span class="number">1</span>].toUpperCase() === <span class="string">'FALSE'</span>) &#123;</span><br><span class="line">					$gamePlayer._showHighLayerCharaSprite = <span class="literal">false</span>;</span><br><span class="line">					$gamePlayer.followers().reverseEach(<span class="function"><span class="keyword">function</span>(<span class="params">follower</span>) </span>&#123;</span><br><span class="line">						follower._showHighLayerCharaSprite = <span class="literal">false</span>;</span><br><span class="line">					&#125;, <span class="keyword">this</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				subject = <span class="keyword">this</span>.character(<span class="built_in">eval</span>(args[<span class="number">0</span>]));</span><br><span class="line">				<span class="keyword">if</span> (args[<span class="number">1</span>].toUpperCase() === <span class="string">'TRUE'</span>) &#123;</span><br><span class="line">					subject._showHighLayerCharaSprite = <span class="literal">true</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (args[<span class="number">1</span>].toUpperCase() === <span class="string">'FALSE'</span>) &#123;</span><br><span class="line">					subject._showHighLayerCharaSprite = <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	AndrewX.TCBT.setupPage = Game_Event.prototype.setupPage;</span><br><span class="line">	Game_Event.prototype.setupPage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		AndrewX.TCBT.setupPage.call(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>._pageIndex &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.list().length; i++) &#123;</span><br><span class="line">				<span class="keyword">if</span> ([<span class="number">108</span>, <span class="number">408</span>].indexOf(<span class="keyword">this</span>.list()[i][<span class="string">'code'</span>]) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">var</span> note = <span class="keyword">this</span>.list()[i][<span class="string">'parameters'</span>][<span class="number">0</span>];</span><br><span class="line">					<span class="keyword">if</span> (note.match(<span class="regexp">/&lt;Disable High Layer Character Sprite&gt;/i</span>)) &#123;</span><br><span class="line">						<span class="keyword">this</span>._showHighLayerCharaSprite = <span class="literal">false</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (note.match(<span class="regexp">/&lt;Enable High Layer Character Sprite&gt;/i</span>)) &#123;</span><br><span class="line">						<span class="keyword">this</span>._showHighLayerCharaSprite = <span class="literal">true</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/" data-id="ciivwkpf90002psvihfll60oa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+          <a href="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/#comments" class="article-comment-link"><i class="fa fa-comments"></i>评论</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RPG-Maker-MV/">RPG Maker MV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/半透明/">半透明</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图块/">图块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/角色/">角色</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/遮挡/">遮挡</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </section>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <a href="/About/index.html"><img src="http://andrewxeno.github.io/css/images/avatar.png" alt="AndrewXeno Avatar"></a>
+    <h1>AndrewX</h1>
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="weibo" href="http://weibo.com/andrewx" target="_blank"><i class="icon fa fa-weibo"></i></a></li>
+      
+        <li><a class="social-tooltip" title="twitter" href="https://twitter.com/AndrewXeno" target="_blank"><i class="icon fa fa-twitter"></i></a></li>
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/AndrewXeno" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+        <li><a class="social-tooltip" title="feed" href="/feed/atom.xml" target="_blank"><i class="icon fa fa-feed"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/posts/2015/12/22/Layered-Animation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">分层动画 Layered Animation</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
+              <p class="item-title"><a href="/posts/2016/01/02/Translucent-Character-Behind-Tile/" class="title">图块遮挡角色半透明 Translucent Character Behind Tile</a></p>
+              <p class="item-date"><time datetime="2016-01-01T14:32:58.000Z" itemprop="datePublished">2016-01-02</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/Layered-Animation/" class="title">分层动画 Layered Animation</a></p>
+              <p class="item-date"><time datetime="2015-12-22T07:24:44.000Z" itemprop="datePublished">2015-12-22</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/OverpassTile-Fix/" class="title">OverpassTile修正 OverpassTile Fix</a></p>
+              <p class="item-date"><time datetime="2015-12-22T07:19:08.000Z" itemprop="datePublished">2015-12-22</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/RM-Plugin/">RM Plugin</a></p>
+              <p class="item-title"><a href="/posts/2015/12/22/Enhanced-Tile-Passage/" class="title">图块通行度增强 Enhanced Tile Passage</a></p>
+              <p class="item-date"><time datetime="2015-12-22T05:49:52.000Z" itemprop="datePublished">2015-12-22</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/杂/">杂</a></p>
+              <p class="item-title"><a href="/posts/2015/12/21/Hello-World/" class="title">Hello World</a></p>
+              <p class="item-date"><time datetime="2015-12-21T12:49:52.000Z" itemprop="datePublished">2015-12-21</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RM-Plugin/">RM Plugin</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/RPG-Maker-MV/" style="font-size: 20px;">RPG Maker MV</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/半透明/" style="font-size: 10px;">半透明</a> <a href="/tags/图块/" style="font-size: 16.67px;">图块</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a> <a href="/tags/角色/" style="font-size: 10px;">角色</a> <a href="/tags/通行度/" style="font-size: 13.33px;">通行度</a> <a href="/tags/遮挡/" style="font-size: 10px;">遮挡</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <p>&copy; 2016 AndrewX</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'andrewxeno';
+  
+  
+  var disqus_url = 'http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+    _st('install','Jr-Qgp9gBsPysySZnfyY','2.0.0');
+  </script>
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/layout-config.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
