@@ -4,7 +4,7 @@
   
   <link href="/feed/atom.xml" rel="self"/>
   <link href="http://andrewxeno.github.io/"/>
-  <updated>2016-01-02T02:48:43.023Z</updated>
+  <updated>2016-01-02T02:59:18.873Z</updated>
   <id>http://andrewxeno.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/"/>
     <id>http://andrewxeno.github.io/posts/2016/01/02/Translucent-Character-Behind-Tile/</id>
     <published>2016-01-01T14:32:58.000Z</published>
-    <updated>2016-01-02T02:48:43.023Z</updated>
+    <updated>2016-01-02T02:59:18.873Z</updated>
     <content type="html"><![CDATA[<h4 id="u63D2_u4EF6_u7B80_u4ECB_uFF1A"><a href="#u63D2_u4EF6_u7B80_u4ECB_uFF1A" class="headerlink" title="插件简介："></a>插件简介：</h4><p>这个插件能实现被图块遮挡的角色呈现半透明的效果，帮助玩家确认被遮挡的角色的位置。原理很简单，就是为所有的角色（包括主角，跟随队友，事件，交通工具）在与高层图块相同的层级（z = 4）上建立半透明的sprite。<br><a id="more"></a></p>
 <h4 id="u622A_u56FE_uFF1A"><a href="#u622A_u56FE_uFF1A" class="headerlink" title="截图："></a>截图：</h4><img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT01.png" alt="TCBT01.png" title="">
 <h4 id="u98DF_u7528_u65B9_u6CD5_uFF1A"><a href="#u98DF_u7528_u65B9_u6CD5_uFF1A" class="headerlink" title="食用方法："></a>食用方法：</h4><h5 id="1-__u5B89_u88C5_uFF1A"><a href="#1-__u5B89_u88C5_uFF1A" class="headerlink" title="1. 安装："></a>1. 安装：</h5><p>直接在插件管理器中启用。</p>
@@ -49,7 +49,7 @@
 <li>插件指令和事件注释标签的效果会互相覆盖。</li>
 <li>当某事件的某一页被激活，该页面的事件注释标签就会被执行，假如该页没有定义标签，那么高层角色sprite的可见性维持不变。</li>
 <li>副作用：角色重叠的话半透明的sprite也会重叠在一起…这个目前感觉无解，如果有解决思路可以留言，谢~</li>
-<li>配合图块通行增强插件和OverpassTile插件及其Fix插件一同食用效果更佳~ <img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT03.png" alt="TCBT03.png" title="">
+<li>配合<a href="http://andrewxeno.github.io/posts/2015/12/22/Enhanced-Tile-Passage/">图块通行增强插件</a>和OverpassTile插件（自带）及其<a href="http://andrewxeno.github.io/posts/2015/12/22/OverpassTile-Fix/">Fix插件</a>一同食用效果更佳~ <img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT03.png" alt="TCBT03.png" title="">
 <img src="/posts/2016/01/02/Translucent-Character-Behind-Tile/TCBT04.png" alt="TCBT04.png" title="">
 </li>
 </ul>
