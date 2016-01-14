@@ -1886,7 +1886,7 @@ i.icon:before {
     transition: width 0.2s ease-in;
   }
   .main-body-inner #sidebar.expend .toggle:before {
-    content: '\f100';
+    content: '\f101';
   }
   .main-body-inner #sidebar.expend #article-nav,
   .main-body-inner #sidebar.expend .widgets-container,
