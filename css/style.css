@@ -580,6 +580,7 @@ body {
 }
 #sidebar .sidebar-top h1 {
   color: rgba(255,255,255,0.8);
+  text-align: right;
   font-size: 30px;
   font-weight: 600;
 }
